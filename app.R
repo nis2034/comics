@@ -1,4 +1,4 @@
-#credentials::set_github_pat("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")
+#credentials::set_github_pat("")
 rm(list=ls())
 library("readxl")
 library("tidyverse")
