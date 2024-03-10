@@ -1,3 +1,4 @@
+#credentials::set_github_pat("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")
 rm(list=ls())
 library("readxl")
 library("tidyverse")
@@ -488,7 +489,7 @@ server <- function(input, output, session) {
                  names(PLATshapes) = PLATlist
                  
                  # # define PLAT colors manually
-                 PLATcols["DNA"] = "#23bbee"
+                 PLATcols["ALAMAR"] = "#23bbee"
                  PLATcols["SOMA"] = "#a62281"
                  PLATcols["BRAIN"] = "#f2921f"
                  PLATcols["BM"] = "#ffc815"
@@ -498,7 +499,7 @@ server <- function(input, output, session) {
                  PLATcols["CM"] = "#57ba47"
                  PLATcols["IgA"] = "#e41d30"
                  PLATcols["RNA"] = "#5c2d83"
-                 PLATcols["HD4"] = "#57ba47"
+                 PLATcols["DIA"] = "#57ba47"
                  PLATcols["IgG"] = "#e41d30"
                  PLATcols["miRNA"] = "#5c2d83"
                  PLATcols["OLINK"] = "#a62281"
@@ -792,7 +793,13 @@ server <- function(input, output, session) {
     data.frame(storage$sheets_flag)
   }))
   output$SAMPLEtable0 = DT::renderDataTable(({
+    if(is.null(storage$sheets_flag))
+    
+      data.frame(storage$sheets_ok)
+    
+    else
          data.frame(storage$sheets_flag)
+  
   }))
   
 
@@ -858,7 +865,7 @@ ui <- dashboardPage(skin="red",
                                      ),
                                      tabBox( width = 5,
                                              # title = "Data used in the network",
-                                             tabPanel("Sheets did not meet the criteria", DT::dataTableOutput("SAMPLEtable0"))
+                                             tabPanel("Data file upload", DT::dataTableOutput("SAMPLEtable0"))
                                      ),
 
 
